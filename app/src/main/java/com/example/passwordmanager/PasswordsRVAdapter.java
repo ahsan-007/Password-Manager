@@ -46,6 +46,7 @@ public class PasswordsRVAdapter extends RecyclerView.Adapter<PasswordsRVAdapter.
             super(itemView);
             this.icon = itemView.findViewById(R.id.icon);
             this.accountType = itemView.findViewById(R.id.accType);
+            itemView.setBackground(R.drawable.custom_rectangle);
         }
 
     }
