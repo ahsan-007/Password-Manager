@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ahsan/AndroidStudioProjects/Mobile-Computing/PasswordManager/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1" />
+        <entry key="..\:/Users/ahsan/AndroidStudioProjects/Mobile-Computing/PasswordManager/app/src/main/res/layout/activity_main.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/ahsan/AndroidStudioProjects/Mobile-Computing/PasswordManager/app/src/main/res/layout/activity_passwords.xml" value="0.209375" />
-        <entry key="..\:/Users/ahsan/AndroidStudioProjects/Mobile-Computing/PasswordManager/app/src/main/res/layout/password.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/ahsan/AndroidStudioProjects/Mobile-Computing/PasswordManager/app/src/main/res/layout/custom_password.xml" value="0.209375" />
+        <entry key="..\:/Users/ahsan/AndroidStudioProjects/Mobile-Computing/PasswordManager/app/src/main/res/layout/password.xml" value="0.25" />
       </map>
     </option>
   </component>

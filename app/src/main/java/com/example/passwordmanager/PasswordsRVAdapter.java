@@ -29,6 +29,7 @@ public class PasswordsRVAdapter extends RecyclerView.Adapter<PasswordsRVAdapter.
     public void onBindViewHolder(@NonNull PasswordViewHolder holder, int position) {
         holder.data = passwords.get(position);
         holder.icon.setImageResource(holder.data.icon);
+        //holder.icon.setImageResource(R.drawable.google);
         holder.accountType.setText(holder.data.accountType);
     }
 
