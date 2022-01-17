@@ -33,8 +33,11 @@ import java.security.spec.AlgorithmParameterSpec;
 
 public interface CryptographyManager {
     Cipher getInitializedCipherForEncryption(@NotNull String keyName);
+
     Cipher getInitializedCipherForDecryption(@NotNull String keyName, byte[] initializationVector);
+
     EncryptedData encryptData(@NotNull String plaintext, @NotNull Cipher cipher);
+
     String decryptData(byte[] ciphertext, @NotNull Cipher cipher);
 }
 
@@ -170,5 +173,9 @@ final class CryptographyManagerImpl implements CryptographyManager {
         Intrinsics.checkNotNullExpressionValue(var10000, "Charset.forName(\"UTF-8\")");
         boolean var6 = false;
         return new String(plaintext, var10000);
+    }
+
+    public static CryptographyManager CryptographyManager() {
+        return (CryptographyManager) (new CryptographyManagerImpl());
     }
 }
