@@ -35,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        secretKeyName = "biometric_sample_encryption_key";
-        biometricPrompt = createBiometricPrompt();
-        promptInfo = createPromptInfo();
-        biometricPrompt.authenticate(promptInfo);
+//        secretKeyName = "biometric_sample_encryption_key";
+//        biometricPrompt = createBiometricPrompt();
+//        promptInfo = createPromptInfo();
+//        biometricPrompt.authenticate(promptInfo);
 
+        Intent intent = new Intent(MainActivity.this, AccountDetails.class);
+        startActivity(intent);
 
     }
 

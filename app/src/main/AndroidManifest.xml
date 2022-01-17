@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".AccountDetails"
+            android:exported="true" />
+        <activity
             android:name=".Passwords"
             android:exported="true" />
         <activity
