@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private byte[] initializationVector;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
         secretKeyName = "biometric_sample_encryption_key";
         biometricPrompt = createBiometricPrompt();
         promptInfo = createPromptInfo();
+        biometricPrompt.authenticate(promptInfo);
 
-        Intent intent = new Intent(MainActivity.this,Passwords.class);
-        startActivity(intent);
+
     }
 
     private BiometricPrompt createBiometricPrompt() {
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 Toast.makeText(getApplicationContext(),
                         "Authentication succeeded!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Passwords.class);
+                startActivity(intent);
             }
 
             @Override
