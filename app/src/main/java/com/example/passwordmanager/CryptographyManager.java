@@ -7,7 +7,9 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
@@ -16,6 +18,8 @@ import javax.crypto.spec.IvParameterSpec;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -30,6 +34,8 @@ import java.security.spec.AlgorithmParameterSpec;
 public interface CryptographyManager {
     Cipher getInitializedCipherForEncryption(@NotNull String keyName);
     Cipher getInitializedCipherForDecryption(@NotNull String keyName, byte[] initializationVector);
+    EncryptedData encryptData(@NotNull String plaintext, @NotNull Cipher cipher);
+    String decryptData(byte[] ciphertext, @NotNull Cipher cipher);
 }
 
 final class CryptographyManagerImpl implements CryptographyManager {
@@ -63,15 +69,10 @@ final class CryptographyManagerImpl implements CryptographyManager {
     @RequiresApi(23)
     @NotNull
     public Cipher getInitializedCipherForDecryption(@NotNull String keyName, byte[] initializationVector) {
-//        Intrinsics.checkNotNullParameter(keyName, "keyName");
-//        Intrinsics.checkNotNullParameter(initializationVector, "initializationVector");
-        Log.i("INITIALIZATION VECTOR2", initializationVector.toString());
         Cipher cipher = this.getCipher();
         SecretKey secretKey = this.getSecretKey(keyName);
         try {
             assert cipher != null;
-            Log.i("INITIALIZATION VECTOR3", initializationVector.toString());
-            Log.i("INITIALIZATION VECTOR4", String.valueOf(initializationVector.length));
             cipher.init(2, (Key) secretKey, (AlgorithmParameterSpec) (new IvParameterSpec(initializationVector)));
 
         } catch (InvalidAlgorithmParameterException | InvalidKeyException e) {
@@ -131,5 +132,43 @@ final class CryptographyManagerImpl implements CryptographyManager {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @NotNull
+    public EncryptedData encryptData(@NotNull String plaintext, @NotNull Cipher cipher) {
+        Intrinsics.checkNotNullParameter(plaintext, "plaintext");
+        Intrinsics.checkNotNullParameter(cipher, "cipher");
+        Charset var10001 = StandardCharsets.UTF_8;
+        Intrinsics.checkNotNullExpressionValue(var10001, "Charset.forName(\"UTF-8\")");
+        boolean var6 = false;
+        byte[] var7 = plaintext.getBytes(var10001);
+        Intrinsics.checkNotNullExpressionValue(var7, "(this as java.lang.String).getBytes(charset)");
+        byte[] ciphertext = new byte[0];
+        try {
+            ciphertext = cipher.doFinal(var7);
+        } catch (BadPaddingException | IllegalBlockSizeException e) {
+            e.printStackTrace();
+        }
+        Intrinsics.checkNotNullExpressionValue(ciphertext, "ciphertext");
+        byte[] var10003 = cipher.getIV();
+        Intrinsics.checkNotNullExpressionValue(var10003, "cipher.iv");
+        return new EncryptedData(ciphertext, var10003);
+    }
+
+    @NotNull
+    public String decryptData(byte[] ciphertext, @NotNull Cipher cipher) {
+        Intrinsics.checkNotNullParameter(ciphertext, "ciphertext");
+        Intrinsics.checkNotNullParameter(cipher, "cipher");
+        byte[] plaintext = new byte[0];
+        try {
+            plaintext = cipher.doFinal(ciphertext);
+        } catch (BadPaddingException | IllegalBlockSizeException e) {
+            e.printStackTrace();
+        }
+        Intrinsics.checkNotNullExpressionValue(plaintext, "plaintext");
+        Charset var10000 = StandardCharsets.UTF_8;
+        Intrinsics.checkNotNullExpressionValue(var10000, "Charset.forName(\"UTF-8\")");
+        boolean var6 = false;
+        return new String(plaintext, var10000);
     }
 }
