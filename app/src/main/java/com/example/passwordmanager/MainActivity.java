@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,18 +32,38 @@ public class MainActivity extends AppCompatActivity {
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
 
+    Button passwords;
+    Button accountDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        secretKeyName = "biometric_sample_encryption_key";
-//        biometricPrompt = createBiometricPrompt();
-//        promptInfo = createPromptInfo();
-//        biometricPrompt.authenticate(promptInfo);
 
-        Intent intent = new Intent(MainActivity.this, AccountDetails.class);
-        startActivity(intent);
+        secretKeyName = "biometric_sample_encryption_key";
+        biometricPrompt = createBiometricPrompt();
+        promptInfo = createPromptInfo();
+        biometricPrompt.authenticate(promptInfo);
+
+        passwords = findViewById(R.id.button3);
+        accountDetails = findViewById(R.id.button4);
+
+        passwords.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Passwords.class);
+                startActivity(intent);
+            }
+        });
+
+        accountDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AccountDetails.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

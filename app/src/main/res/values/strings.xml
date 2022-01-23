@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Password Manager</string>
+    <string-array name="account_types">
+        <item>Account Type</item>
+        <item>Amazon</item>
+        <item>Facebook</item>
+        <item>Gmail</item>
+        <item>Google</item>
+        <item>Instagram</item>
+        <item>Slack</item>
+        <item>Snapchat</item>
+        <item>Twitter</item>
+        <item>Yahoo</item>
+        <item>Other</item>
+
+    </string-array>
 </resources>
