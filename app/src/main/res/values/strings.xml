@@ -11,6 +11,11 @@
         <item>Snapchat</item>
         <item>Twitter</item>
         <item>Yahoo</item>
+        <item>Docker</item>
+        <item>Linked In</item>
+        <item>Trello</item>
+        <item>Fiverr</item>
+        <item>Upwork</item>
         <item>Other</item>
 
     </string-array>

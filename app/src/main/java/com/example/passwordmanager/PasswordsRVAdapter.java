@@ -1,10 +1,13 @@
 package com.example.passwordmanager;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +32,6 @@ public class PasswordsRVAdapter extends RecyclerView.Adapter<PasswordsRVAdapter.
     public void onBindViewHolder(@NonNull PasswordViewHolder holder, int position) {
         holder.data = passwords.get(position);
         holder.icon.setImageResource(holder.data.icon);
-        //holder.icon.setImageResource(R.drawable.google);
         holder.accountType.setText(holder.data.accountType);
     }
 
@@ -46,6 +48,15 @@ public class PasswordsRVAdapter extends RecyclerView.Adapter<PasswordsRVAdapter.
             super(itemView);
             this.icon = itemView.findViewById(R.id.icon);
             this.accountType = itemView.findViewById(R.id.accType);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent =  new Intent(itemView.getContext(),AccountDetails.class);
+                    intent.putExtra("accountType", accountType.getText());
+                    itemView.getContext().startActivity(intent);
+
+                }
+            });
         }
 
     }

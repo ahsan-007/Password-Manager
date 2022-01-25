@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
 
-    Button passwords;
-    Button accountDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,24 +44,8 @@ public class MainActivity extends AppCompatActivity {
         promptInfo = createPromptInfo();
         biometricPrompt.authenticate(promptInfo);
 
-        passwords = findViewById(R.id.button3);
-        accountDetails = findViewById(R.id.button4);
-
-        passwords.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Passwords.class);
-                startActivity(intent);
-            }
-        });
-
-        accountDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AccountDetails.class);
-                startActivity(intent);
-            }
-        });
+//        Intent intent = new Intent(MainActivity.this, Passwords.class);
+//        startActivity(intent);
 
     }
 
