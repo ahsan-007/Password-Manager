@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         return new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Biometric login for my app")
                 .setSubtitle("Log in using your biometric credential")
-                .setAllowedAuthenticators(BiometricManager.Authenticators.DEVICE_CREDENTIAL | BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                .setAllowedAuthenticators(BiometricManager.Authenticators.DEVICE_CREDENTIAL | BiometricManager.Authenticators.BIOMETRIC_WEAK)
                 .setConfirmationRequired(false)
                 .build();
     }
